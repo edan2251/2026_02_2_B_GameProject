@@ -16,7 +16,7 @@ public class DungeonPlayerData
 [Serializable]
 public class DungeonRoomData
 {
-    public int idex;
+    public int index;
     public string type;
     public string state;
     public string monsterName;
@@ -26,10 +26,20 @@ public class DungeonRoomData
 }
 
 [Serializable]
+public class DungeonRunData
+{
+    public string id;
+    public string state;
+    public int currentRoomIndex;
+    public int runGold;
+    public DungeonRoomData currentRoom;
+}
+
+[Serializable]
 public class DungeonStateData
 {
     public DungeonPlayerData player;
-    public DungeonRoomData room;
+    public DungeonRunData run;
 }
 
 [Serializable]

@@ -133,7 +133,17 @@ app.post("/api/dungeon/action", (req, res) => {
 
         dungeonRun.currentRoomIndex += 1;
         currentRoom().state = "ACTIVE";
-        return success(res, "DUNGEON_RETUREND", "탐험을 마치고 귀환했습니다.", gameState());
+        return success(res, "ROOM_ADVANCED", "다음 방으로 이동했습니다.", gameState());
+    }
+
+    if(action === "RETURN" && room.type ==="EXIT" && room.state ==="ACTIVE")
+    {
+        player.gold += dungeonRun.runGold;
+
+        dungeonRun.runGold = 0;
+        dungeonRun.state = "RETURNED";
+
+        return success(res, "DUNGEON_RETURNED", "탐험을 마치고 귀환했습니다.", gameState());
     }
 
     return failure(res, 409, "ACTION_NOT_ALLOWED", "현재 방에서 할 수 없는 행동입니다.");
